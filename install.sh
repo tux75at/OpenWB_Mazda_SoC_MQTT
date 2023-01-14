@@ -21,4 +21,4 @@ echo "installing pymazda"
 pip3 install pymazda
 
 echo "Cloning the GIT repository"
-git clone https://github.com/tux75at/OpenWB_Mazda_SoC_MQTT.git --branch master
+git clone https://github.com/tux75at/OpenWB_Mazda_SoC_MQTT.git
