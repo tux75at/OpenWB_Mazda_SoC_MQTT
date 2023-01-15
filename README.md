@@ -66,7 +66,7 @@ Use the full path to the python script for crontab.
 | OPENWBIP      | OpenWB IP Address                                                           |
 | LOGLEVEL      | Loglevel, can have following values: DEBUG, INFO, WARNING, ERROR, CRITICAL. |
 
-##Setup for OpenWB
+## Setup for OpenWB
 Additionaly OpenWB needs to be setup to use MQTT as SoC interface.
 In the webinterface go to "Einstellungen --> Modulkonfiguration --> Ladepunkte".
 For the selected chargepoint you need to change "SOC Modul" to MQTT and you can set "SoC nur Abfragen wenn Auto angesteckt" to "Nein".
