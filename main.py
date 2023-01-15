@@ -22,7 +22,8 @@
 #  3 - Password for Mazda user account
 #  4 - Region (North America = MNAO, Europe = MME, Japan = MJO)
 #  5 - vin of vehicle for SoC check
-#  6 - Log Level 'Debug', 'INFO', 'WARNING', 'ERROR' or 'CRITICAL', if not used then it is set to 'DEBUG'
+#  6 - IP Address of OpenWB
+#  7 - Log Level 'Debug', 'INFO', 'WARNING', 'ERROR' or 'CRITICAL', if not used then it is set to 'DEBUG'
 
 import asyncio
 import sys
@@ -34,13 +35,12 @@ from paho.mqtt import client as mqtt_client
 
 pymazda = __import__('pymazda', fromlist=['pymazda'])
 
-broker = '192.168.10.140'
 port = 1883
 topic_pre = 'openWB/set/lp/'
 topic_post = '/%Soc'
 client_id = 'mazda_soc'
 
-def connect_mqtt():
+def connect_mqtt(broker):
         logger = logging.getLogger('SoCmodule')
         def on_connect(client, userdata, flags, rc):
                 if rc == 0:
@@ -61,7 +61,7 @@ def publish(client, topic, SoC):
 	#else:
 	#	print(f"Failed to send message to topic {topic}")
 
-async def test(lp) -> None:
+async def test(lp, broker) -> None:
     logger = logging.getLogger('SoCmodule')
 
     client = pymazda.Client(userID, password, region)
@@ -87,7 +87,7 @@ async def test(lp) -> None:
             status = await client.get_ev_vehicle_status(vehicle_id)
             soc = status["chargeInfo"]["batteryLevelPercentage"]
             logger.info("Vehicle battery level = " + format(soc) + "%!")
-            mqtt_client = connect_mqtt()
+            mqtt_client = connect_mqtt(broker)
             mqtt_client.loop_start()
             publish(mqtt_client, topic_pre + format(chargepoint) + topic_post, soc)
     if found_ev == 0:
@@ -102,10 +102,10 @@ if __name__ == "__main__":
     logging.basicConfig(filename=logfilename, level=logging.DEBUG)
     logger=logging.getLogger('SoCmodule')
     argnum = len(sys.argv)
-    if argnum < 6: # not enough parameter
+    if argnum < 7: # not enough parameter
         logger.debug("Wrong number of arguments! should be 5, but there are only " + format(argnum) + "!")
         sys.exit("Wrong number of arguments!")
-    if argnum > 7: # too many argnuments
+    if argnum > 8: # too many argnuments
         logger.debug("Too many arguments! should be 6 or 7, but there " + format(argnum) + "!")
         sys.exit("Wrong number of arguments!")
 
@@ -115,9 +115,10 @@ if __name__ == "__main__":
     password=str(sys.argv[3])
     region=str(sys.argv[4])
     charge_vehicle_vin=str(sys.argv[5])
+    broker=str(sys.argv[6])
     # set correct log level for module if this parameter exists
-    if argnum == 7:
-        level=str(sys.argv[6])
+    if argnum == 8:
+        level=str(sys.argv[7])
         if level=='DEBUG':
             loglevel=logging.DEBUG
         elif level=='INFO':
@@ -133,4 +134,4 @@ if __name__ == "__main__":
         logging.getLogger().setLevel(loglevel)
 
     loop = asyncio.get_event_loop()
-    SoC = loop.run_until_complete(test(chargepoint))
+    SoC = loop.run_until_complete(test(chargepoint, broker))

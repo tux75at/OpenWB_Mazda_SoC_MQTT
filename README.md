@@ -12,8 +12,36 @@ Following command can be used for installation:
 ```
 curl -s https://raw.githubusercontent.com/tux75at/OpenWB_Mazda_SoC_MQTT/master/install.sh | sudo bash
 ```
+This will create a directory "OpenWB_Mazda_SoC_MQTT" and the required files will be in this directory.
 
-## Setup
+## Test of installation
+The script can first be tested with following command.
+```
+cd OpenWB_Mazda_SoC_MQTT
+python3 main.py CHARGEPOINT EMAIL PASSWORD REGION VID OPENWBIP LOGLEVEL
+```
+After running this command you will have a mazda_soc.log file in this directory.
+```
+less mazda_soc
+```
+should have content like following:
+```
+INFO:SoCmodule:Login done!
+INFO:pymazda.connection:Retrieving encryption keys
+INFO:pymazda.connection:Successfully retrieved encryption keys
+INFO:pymazda.connection:No access token present. Logging in.
+INFO:pymazda.connection:Logging in as EMAIL-ADRESS
+INFO:pymazda.connection:Retrieving public key to encrypt password
+INFO:pymazda.connection:Sending login request
+INFO:pymazda.connection:Successfully logged in as EMAIL-ADRESS
+INFO:SoCmodule:Vehicles retrieved!
+INFO:SoCmodule:Vehicle vin found!
+INFO:SoCmodule:Vehicle battery level = 80%!
+INFO:SoCmodule:Connected to MQTT Broker!
+```
+The file should have no error messages.
+
+## Setup to run the script periodicaly
 The script needs to run periodicaly, this can be done using crontab.
 ```
 sudo crontab -e
@@ -24,7 +52,7 @@ The fields are seperated with space and following order: minutes, hour, day of m
 
 If you want to have the SoC refreshed every 5 minutes you can use following entry:
 ```
-*/5 * * * * python3 /PATH_TO_SCRIPT/openWB_Mazda_SoC_MQTT/main.py CHARGEPOINT EMAIL PASSWORD REGION VID LOGLEVEL
+*/5 * * * * python3 /PATH_TO_SCRIPT/openWB_Mazda_SoC_MQTT/main.py CHARGEPOINT EMAIL PASSWORD REGION VID OPENWBIP LOGLEVEL
 ```
 Use the full path to the python script for crontab.
 
@@ -35,4 +63,10 @@ Use the full path to the python script for crontab.
 | PASSWORD      | Password for Mazda Account                                                  |
 | REGION        | Reagion code * North America (MNAO) * Europe (MME) * Japan (MJO)            |
 | VID           | Vehicle Identification number                                               |
+| OPENWBIP      | OpenWB IP Address                                                           |
 | LOGLEVEL      | Loglevel, can have following values: DEBUG, INFO, WARNING, ERROR, CRITICAL. |
+
+##Setup for OpenWB
+Additionaly OpenWB needs to be setup to use MQTT as SoC interface.
+In the webinterface go to "Einstellungen --> Modulkonfiguration --> Ladepunkte".
+For the selected chargepoint you need to change "SOC Modul" to MQTT and you can set "SoC nur Abfragen wenn Auto angesteckt" to "Nein".
