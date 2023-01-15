@@ -1,10 +1,10 @@
 # OpenWB_Mazda_SoC_MQTT
 Mazda State of Charge Module for OpenWB using MQTT as interface
-This openWB module uses pymazda https://github.com/bdr99/pymazda, which can also be installed with pip
+This openWB module uses pymazda https://github.com/bdr99/pymazda, which can be installed with pip. The setup procedure will install it.
 
 ## Requirements
 This module can not run on the openWB hardware, except you have installed it yourself or you have root access to the system.
-You will need a System running linux (e.g. Raspbery Pi) with bullseye (earlier versions of Rasbian are not testet).
+You will need a System running linux e.g. Raspbery Pi with bullseye, earlier versions of Rasbian are not testet and might not work because of incompatibility of some libraries with pymazda.
 
 ## Installation
 This module and all requred software modules can be installed using the install script.
@@ -61,7 +61,7 @@ Use the full path to the python script for crontab.
 | CHARGEPOINT   | Chargepoint number of openWP                                                |
 | EMAIL         | E-Mail for Mazda Account                                                    |
 | PASSWORD      | Password for Mazda Account                                                  |
-| REGION        | Reagion code * North America (MNAO) * Europe (MME) * Japan (MJO)            |
+| REGION        | Reagion code <br><ul><li>* North America (MNAO)</li><li>* Europe (MME)</li><li>* Japan (MJO)</li></ul>|
 | VID           | Vehicle Identification number                                               |
 | OPENWBIP      | OpenWB IP Address                                                           |
 | LOGLEVEL      | Loglevel, can have following values: DEBUG, INFO, WARNING, ERROR, CRITICAL. |
