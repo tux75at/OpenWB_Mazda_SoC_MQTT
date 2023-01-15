@@ -10,7 +10,7 @@ You will need a System running linux e.g. Raspbery Pi with bullseye, earlier ver
 This module and all requred software modules can be installed using the install script.
 Following command can be used for installation:
 ```
-curl -s https://raw.githubusercontent.com/tux75at/OpenWB_Mazda_SoC_MQTT/master/install.sh | sudo bash
+curl -s https://raw.githubusercontent.com/tux75at/OpenWB_Mazda_SoC_MQTT/master/install.sh | bash
 ```
 This will create a directory "OpenWB_Mazda_SoC_MQTT" and the required files will be in this directory.
 
