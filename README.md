@@ -61,7 +61,7 @@ Use the full path to the python script for crontab.
 | CHARGEPOINT   | Chargepoint number of openWP                                                |
 | EMAIL         | E-Mail for Mazda Account                                                    |
 | PASSWORD      | Password for Mazda Account                                                  |
-| REGION        | Reagion code <br><ul><li>* North America (MNAO)</li><li>* Europe (MME)</li><li>* Japan (MJO)</li></ul>|
+| REGION        | Reagion code <br><ul><li>North America (MNAO)</li><li>Europe (MME)</li><li>Japan (MJO)</li></ul>|
 | VID           | Vehicle Identification number                                               |
 | OPENWBIP      | OpenWB IP Address                                                           |
 | LOGLEVEL      | Loglevel, can have following values: DEBUG, INFO, WARNING, ERROR, CRITICAL. |
