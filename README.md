@@ -20,9 +20,10 @@ The script can first be tested with following command.
 cd OpenWB_Mazda_SoC_MQTT
 python3 main.py CHARGEPOINT EMAIL PASSWORD REGION VID OPENWBIP LOGLEVEL
 ```
-After running this command you will have a mazda_soc.log file in this directory.
+After running this command with 1 for the chargepoint and INFO for the loglevel you will have a mazda_soc.log file in this directory.
+Full description of the parameter is below.
 ```
-less mazda_soc
+less mazda_soc.log
 ```
 should have content like following:
 ```
@@ -56,15 +57,15 @@ If you want to have the SoC refreshed every 5 minutes you can use following entr
 ```
 Use the full path to the python script for crontab.
 
-| **Parameter** | **Description**                                                             |
-|---------------|-----------------------------------------------------------------------------|
-| CHARGEPOINT   | Chargepoint number of openWP                                                |
-| EMAIL         | E-Mail for Mazda Account                                                    |
-| PASSWORD      | Password for Mazda Account                                                  |
-| REGION        | Reagion code <br><ul><li>North America (MNAO)</li><li>Europe (MME)</li><li>Japan (MJO)</li></ul>|
-| VID           | Vehicle Identification number                                               |
-| OPENWBIP      | OpenWB IP Address                                                           |
-| LOGLEVEL      | Loglevel, can have following values: DEBUG, INFO, WARNING, ERROR, CRITICAL. |
+| **Parameter** | **Description**                                                                                                   |
+|---------------|-------------------------------------------------------------------------------------------------------------------|
+| CHARGEPOINT   | Chargepoint number of openWP, only integer number e.g. '1' for LP1                                                |
+| EMAIL         | E-Mail for Mazda Account                                                                                          |
+| PASSWORD      | Password for Mazda Account                                                                                        |
+| REGION        | Reagion code <br><ul><li>North America (MNAO)</li><li>Europe (MME)</li><li>Japan (MJO)</li></ul>                  |
+| VID           | Vehicle Identification number, if you have more Mazdas assigned to the account, you can choose the car by the VID |
+| OPENWB-IP     | OpenWB IP Address                                                                                                 |
+| LOGLEVEL      | Loglevel, can have following values: DEBUG, INFO, WARNING, ERROR, CRITICAL.                                       |
 
 ## Setup for OpenWB
 Additionaly OpenWB needs to be setup to use MQTT as SoC interface.
