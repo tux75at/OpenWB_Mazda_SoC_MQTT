@@ -16,8 +16,8 @@ source "$HOME/.cargo/env"
 echo "compile newest cryptography module, this will take some time..."
 sudo pip3 install cryptography
 
-echo "installing pymazda"
-sudo pip3 install pymazda
-
 echo "Cloning the GIT repository"
-git clone https://github.com/tux75at/OpenWB_Mazda_SoC_MQTT.git --branch main
+sudo git clone https://github.com/tux75at/OpenWB_Mazda_SoC_MQTT.git --branch main
+
+echo "creating link to pymazda module"
+sudo ln -s  pymazda submodule/pymazda/pymazda
