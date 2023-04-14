@@ -12,7 +12,7 @@ echo "compile newest cryptography module, this will take some time..."
 sudo pip3 install cryptography
 
 echo "Cloning the GIT repository"
-sudo git clone https://github.com/tux75at/OpenWB_Mazda_SoC_MQTT.git --branch pymazda_sources
+sudo git clone https://github.com/tux75at/OpenWB_Mazda_SoC_MQTT.git --branch main
 cd OpenWB_Mazda_SoC_MQTT
 echo "Initializing submodules"
 sudo git submodule init
