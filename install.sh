@@ -19,5 +19,4 @@ sudo git submodule init
 sudo git submodule update
 
 echo "creating link to pymazda module"
-sudo ln -s  pymazda submodule/pymazda/pymazda
 sudo ln -s submodules/pymazda/pymazda/ pymazda
