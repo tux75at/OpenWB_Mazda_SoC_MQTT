@@ -1,0 +1,3 @@
+[submodule "submodules/pymazda"]
+	path = submodules/pymazda
+	url = https://github.com/bdr99/pymazda.git

@@ -6,18 +6,17 @@ sudo apt upgrade -y
 sudo apt install -y python3-pip libffi-dev python3-dev cargo pkg-config build-essential libssl-dev git
 
 echo "install required python modules"
-sudo pip3 install paho-mqtt asyncio secrets
-
-echo "install rust to compile newest cryptography module which is required for pymazda"
-echo "this will take a some time..."
-sudo curl https://sh.rustup.rs -sSf | sh -s -- -y
-source "$HOME/.cargo/env"
+sudo pip3 install paho-mqtt asyncio pyOpenSSL secrets aiohttp
 
 echo "compile newest cryptography module, this will take some time..."
 sudo pip3 install cryptography
 
-echo "installing pymazda"
-sudo pip3 install pymazda
-
 echo "Cloning the GIT repository"
-git clone https://github.com/tux75at/OpenWB_Mazda_SoC_MQTT.git --branch main
+sudo git clone https://github.com/tux75at/OpenWB_Mazda_SoC_MQTT.git --branch pymazda_sources
+cd OpenWB_Mazda_SoC_MQTT
+echo "Initializing submodules"
+sudo git submodule init
+sudo git submodule update
+
+echo "creating link to pymazda module"
+sudo ln -s submodules/pymazda/pymazda/ pymazda
