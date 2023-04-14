@@ -6,7 +6,7 @@ sudo apt upgrade -y
 sudo apt install -y python3-pip libffi-dev python3-dev cargo pkg-config build-essential libssl-dev git
 
 echo "install required python modules"
-sudo pip3 install paho-mqtt asyncio secrets
+sudo pip3 install paho-mqtt asyncio pyOpenSSL secrets
 
 echo "install rust to compile newest cryptography module which is required for pymazda"
 echo "this will take a some time..."
