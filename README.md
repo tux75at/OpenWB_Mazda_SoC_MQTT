@@ -1,9 +1,9 @@
 # OpenWB_Mazda_SoC_MQTT
 Mazda State of Charge Module for OpenWB using MQTT as interface
-This openWB module uses pymazda https://github.com/bdr99/pymazda, which can be installed with pip. The setup procedure will install it.
+This OpenWB module uses pymazda https://github.com/bdr99/pymazda, which can be installed with pip. The setup procedure will install it.
 
 ## Requirements
-This module can not run on the openWB hardware, except you have installed it yourself or you have root access to the system.
+This module can not run on the OpenWB hardware, except you have installed it yourself or you have root access to the system.
 You will need a System running linux e.g. Raspbery Pi with bullseye, earlier versions of Rasbian are not testet and might not work because of incompatibility of some libraries with pymazda.
 
 ## Installation
@@ -53,7 +53,7 @@ The fields are seperated with space and following order: minutes, hour, day of m
 
 If you want to have the SoC refreshed every 5 minutes you can use following entry:
 ```
-*/5 * * * * python3 /PATH_TO_SCRIPT/openWB_Mazda_SoC_MQTT/main.py CHARGEPOINT EMAIL PASSWORD REGION VID OPENWBIP LOGLEVEL
+*/5 * * * * python3 /PATH_TO_SCRIPT/OpenWB_Mazda_SoC_MQTT/main.py CHARGEPOINT EMAIL PASSWORD REGION VID OPENWBIP LOGLEVEL
 ```
 Use the full path to the python script for crontab.
 
